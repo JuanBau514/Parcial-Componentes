@@ -5,29 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".ui.theme.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"/>
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <include layout="@layout/content_main" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:text="@string/guardar_cancion"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="150dp"/>
+
+    <Button
+        android:id="@+id/btnMaraca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/practica_maraca"
+        android:layout_marginTop="210dp"/>
+
+    <Button
+        android:id="@+id/btnTambor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/practica_tambor"
+        android:layout_marginTop="270dp"/>
+
+    <SearchView
+        android:id="@+id/txtSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="330dp"/>
+
+    <TextView
+        android:id="@+id/txtTittle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rhythmrevolution"
+        android:layout_marginTop="75dp"
+        android:textSize="14pt"
+        android:textAlignment="center"
+        android:textStyle="bold|italic"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
