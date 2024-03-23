@@ -47,4 +47,11 @@
     <string name="practica_maraca">Práctica maraca</string>
     <string name="practica_tambor">Práctica tambor</string>
     <string name="rhythmrevolution">RhythmRevolution</string>
+    <string name="save_letter">Guardar letra de una canción</string>
+    <string name="name">Nombre:</string>
+    <string name="letter">Letra:</string>
+    <string name="hint_letter">Escriba la letra de la canción aquí</string>
+    <string name="hint_name">Escriba el nombre de la canción aquí</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Volver</string>
 </resources>
