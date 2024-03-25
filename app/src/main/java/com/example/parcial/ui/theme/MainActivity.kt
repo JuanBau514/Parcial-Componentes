@@ -18,5 +18,17 @@ class MainActivity : AppCompatActivity() {
             var intent = Intent(this, SaveSong::class.java)
             startActivity(intent)
         }
+
+        binding.btnMaraca.setOnClickListener{
+            var intent = Intent(this, Rules::class.java)
+            intent.putExtra("instrument", "Maraca")
+            startActivity(intent)
+        }
+
+        binding.btnTambor.setOnClickListener{
+            var intent = Intent(this, Rules::class.java)
+            intent.putExtra("instrument", "Tambor")
+            startActivity(intent)
+        }
     }
 }

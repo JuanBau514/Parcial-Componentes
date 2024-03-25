@@ -13,6 +13,18 @@
         android:theme="@style/Theme.Parcial"
         tools:targetApi="31">
         <activity
+            android:name=".logic.Maraca"
+            android:exported="false" />
+        <activity
+            android:name=".logic.Tambor"
+            android:exported="false" />
+        <activity
+            android:name=".ui.theme.Rules"
+            android:exported="false" />
+        <activity
+            android:name=".ui.theme.Song"
+            android:exported="false" />
+        <activity
             android:name=".ui.theme.SaveSong"
             android:exported="true"
             android:theme="@style/Theme.Parcial" />

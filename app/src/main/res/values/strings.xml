@@ -54,4 +54,7 @@
     <string name="hint_name">Escriba el nombre de la canción aquí</string>
     <string name="save">Guardar</string>
     <string name="cancel">Volver</string>
+    <string name="borrar">Borrar</string>
+    <string name="rules">Instrucciones</string>
+    <string name="start">Comenzar</string>
 </resources>
