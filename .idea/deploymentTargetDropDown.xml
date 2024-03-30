@@ -2,18 +2,6 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="MainActivity">
-        <State />
-      </entry>
-      <entry key="Rules">
-        <State />
-      </entry>
-      <entry key="SaveSong">
-        <State />
-      </entry>
-      <entry key="Song">
-        <State />
-      </entry>
       <entry key="app">
         <State />
       </entry>
