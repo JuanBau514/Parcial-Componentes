@@ -34,11 +34,10 @@ class MainActivity : AppCompatActivity() {
         editTextSearch = findViewById(R.id.txtSearch)
         listViewSongs = findViewById(R.id.listViewSongs)
 
-        // Agregar canciones de ejemplo (puedes cargar las canciones desde cualquier fuente)
-        allSongs.addAll(listOf("Canción 1", "Canción 2", "Canción 3", "Canción 4"))
+        //allSongs.addAll(listOf("Canción 1", "Canción 2", "Canción 3", "Canción 4"))
         filteredSongs.addAll(allSongs)
 
-        // Inicializar adaptador para el ListView
+        // Inicializar ListView
         songAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, filteredSongs)
         listViewSongs.adapter = songAdapter
 
@@ -46,16 +45,31 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 filterSongs(s.toString())
             }
-
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        binding.btnSave.setOnClickListener{
-            var intent = Intent(this, SaveSong::class.java)
+        listViewSongs.setOnItemClickListener { parent, view, position, id ->
+            val selectedSong = parent.getItemAtPosition(position) as String
+            val songLyrics = allSongs[position]  // Obtén las letras de la canción según la posición en la lista
+
+            // Crear intent para abrir la actividad SongActivity
+            val intent = Intent(this, Song::class.java)
+
+            // Pasar datos de la canción a la actividad SongActivity
+            intent.putExtra("songName", selectedSong)
+            intent.putExtra("songLyrics", songLyrics)
+
+            // Iniciar la actividad SongActivity
             startActivity(intent)
         }
+
+
+        binding.btnSave.setOnClickListener{
+            var intent = Intent(this, SaveSong::class.java)
+            startActivityForResult(intent, 1)
+        }
+
 
         binding.btnMaraca.setOnClickListener{
             var intent = Intent(this, Rules::class.java)
