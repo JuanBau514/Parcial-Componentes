@@ -83,6 +83,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            val songName = data?.getStringExtra("songName")
+            val songLyrics = data?.getStringExtra("songLyrics")
+            if (songName != null && songLyrics != null) {
+                allSongs.add(songName)
+                filteredSongs.add(songName)
+                songAdapter.notifyDataSetChanged()
+            }
+        }
+    }
 
     private fun filterSongs(query: String) {
         filteredSongs.clear()
