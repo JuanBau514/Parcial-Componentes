@@ -2,35 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-<<<<<<< HEAD
       <entry key="MainActivity">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\Jimmy\.android\avd\Medium_Phone_API_34.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-30T19:26:16.671178600Z" />
-        </State>
-      </entry>
-      <entry key="Rules">
-        <State />
-      </entry>
-      <entry key="SaveSong">
-        <State />
-      </entry>
-      <entry key="Song">
-        <State />
-      </entry>
-=======
->>>>>>> 020d7bcc5d89cb65545d330c4426b27b757512c5
-      <entry key="app">
         <State />
       </entry>
     </value>
