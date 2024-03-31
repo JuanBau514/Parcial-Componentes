@@ -41,11 +41,10 @@ class Song : AppCompatActivity() {
             // Crear intent para enviar de vuelta el nombre de la canción eliminada
             val intent = Intent()
             intent.putExtra("deletedSongName", songName)
+            intent.putExtra("deletedSongLyrics", songLyrics)
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
-
-
 
         binding.btnEditar.setOnClickListener {
             val songName = intent.getStringExtra("songName")
