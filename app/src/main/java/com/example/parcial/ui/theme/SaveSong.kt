@@ -33,10 +33,7 @@ class SaveSong : AppCompatActivity() {
             intent.putExtra("songLyrics", songLyrics)
             Toast.makeText(this, "Canción guardada", Toast.LENGTH_SHORT).show()
             setResult(RESULT_OK, intent)
-            Toast.makeText(this, "Nombre de la canción: $songName", Toast.LENGTH_SHORT).show()
-            Toast.makeText(this, "Letra de la canción: $songLyrics", Toast.LENGTH_SHORT).show()
             finish()
-
         }
 
         binding.btnReturn.setOnClickListener {

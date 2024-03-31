@@ -41,21 +41,28 @@ class Song : AppCompatActivity() {
             // Crear intent para enviar de vuelta el nombre de la canción eliminada
             val intent = Intent()
             intent.putExtra("deletedSongName", songName)
+            intent.putExtra("deletedSongLyrics", songLyrics)
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
 
-
-
         binding.btnEditar.setOnClickListener {
-            val songName = intent.getStringExtra("songName")
-            val songLyrics = intent.getStringExtra("songLyrics")
+            val editSongName = intent.getStringExtra("edSongName")
+            val editSongLyrics = intent.getStringExtra("edSongLyrics")
+            val erraseSongName = intent.getStringExtra("SongName")
+            val erraseSongLyrics = intent.getStringExtra("songLyrics")
+
             val newLyrics = binding.txtInputEditSong.text.toString()
             if (TextUtils.isEmpty(newLyrics)) {
                 Toast.makeText(this, "No se puede dejar el campo vacío", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Canción editada", Toast.LENGTH_SHORT).show()
-                finish()
+                // Crear un nuevo intent para abrir la actividad SaveSong y pasar los datos de la canción
+                val editIntent = Intent(this, SaveSong::class.java)
+                editIntent.putExtra("edSongName", editSongName)
+                editIntent.putExtra("edSongLyrics", editSongLyrics)
+                editIntent.putExtra("songName", erraseSongName)
+                editIntent.putExtra("songLyrics", erraseSongLyrics)
+                startActivityForResult(editIntent, 3)
             }
         }
 
