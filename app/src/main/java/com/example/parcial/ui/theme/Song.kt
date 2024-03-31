@@ -1,5 +1,7 @@
 package com.example.parcial.ui.theme
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -26,11 +28,36 @@ class Song : AppCompatActivity() {
         val songName = intent.getStringExtra("songName")
         val songLyrics = intent.getStringExtra("songLyrics")
 
-        Toast.makeText(this, "Nombre de la canción: $songName", Toast.LENGTH_SHORT).show()
-        Toast.makeText(this, "Letra de la canción: $songLyrics", Toast.LENGTH_SHORT).show()
-
         // Obtener las referencias de los TextView
         binding.txtTitleSong.text = songName
         binding.txtInputEditSong.setText(songLyrics)
+
+        // boton eliminar cancion
+        binding.btnBorrar.setOnClickListener {
+            val songName = intent.getStringExtra("songName")
+            val songLyrics = intent.getStringExtra("songLyrics")
+            Toast.makeText(this, "Canción eliminada", Toast.LENGTH_SHORT).show()
+
+            // Crear intent para enviar de vuelta el nombre de la canción eliminada
+            val intent = Intent()
+            intent.putExtra("deletedSongName", songName)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
+
+
+
+        binding.btnEditar.setOnClickListener {
+            val songName = intent.getStringExtra("songName")
+            val songLyrics = intent.getStringExtra("songLyrics")
+            val newLyrics = binding.txtInputEditSong.text.toString()
+            if (TextUtils.isEmpty(newLyrics)) {
+                Toast.makeText(this, "No se puede dejar el campo vacío", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Canción editada", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        }
+
     }
 }

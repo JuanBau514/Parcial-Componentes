@@ -1,5 +1,6 @@
 package com.example.parcial.ui.theme
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parcial.R
 import com.example.parcial.databinding.ActivityMainBinding
@@ -41,14 +43,6 @@ class MainActivity : AppCompatActivity() {
         songAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, filteredSongs)
         listViewSongs.adapter = songAdapter
 
-        editTextSearch.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                filterSongs(s.toString())
-            }
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
-
         listViewSongs.setOnItemClickListener { parent, view, position, id ->
             val selectedSong = parent.getItemAtPosition(position) as String
             val songLyrics = allSongs[position]  // Obtén las letras de la canción según la posición en la lista
@@ -61,8 +55,9 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("songLyrics", songLyrics)
 
             // Iniciar la actividad SongActivity
-            startActivity(intent)
+            startActivityForResult(intent, 2) // Cambiado de `startActivity` a `startActivityForResult`
         }
+
 
 
         binding.btnSave.setOnClickListener{
@@ -83,18 +78,32 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            val songName = data?.getStringExtra("songName")
-            val songLyrics = data?.getStringExtra("songLyrics")
-            if (songName != null && songLyrics != null) {
-                allSongs.add(songLyrics)
-                filteredSongs.add(songName)
-                songAdapter.notifyDataSetChanged()
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == 1) { // Agregar canción
+                val songName = data?.getStringExtra("songName")
+                val songLyrics = data?.getStringExtra("songLyrics")
+                if (songName != null && songLyrics != null) {
+                    allSongs.add(songLyrics)
+                    filteredSongs.add(songName)
+                    songAdapter.notifyDataSetChanged()
+                    Toast.makeText(this, "Canción agregada: $songName", Toast.LENGTH_SHORT).show()
+                }
+            } else if (requestCode == 2) { // Eliminar canción
+                val deletedSongName = data?.getStringExtra("deletedSongName")
+                if (!deletedSongName.isNullOrEmpty()) {
+                    // Elimina la canción de la lista
+                    allSongs.remove(deletedSongName)
+                    filteredSongs.remove(deletedSongName)
+                    songAdapter.notifyDataSetChanged()
+                    Toast.makeText(this, "Canción eliminada: $deletedSongName", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
+
 
     private fun filterSongs(query: String) {
         filteredSongs.clear()
