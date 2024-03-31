@@ -93,6 +93,7 @@ class MainActivity : AppCompatActivity() {
                 }
             } else if (requestCode == 2) { // Eliminar canción
                 val deletedSongName = data?.getStringExtra("deletedSongName")
+                val deletedSongLyrics = data?.getStringExtra("deletedSongLyrics")
                 if (!deletedSongName.isNullOrEmpty()) {
                     // Elimina la canción de la lista
                     allSongs.remove(deletedSongName)
