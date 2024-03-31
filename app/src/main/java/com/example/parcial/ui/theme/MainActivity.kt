@@ -3,12 +3,9 @@ package com.example.parcial.ui.theme
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ListView
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parcial.R
@@ -101,9 +98,24 @@ class MainActivity : AppCompatActivity() {
                     songAdapter.notifyDataSetChanged()
                     Toast.makeText(this, "Canción eliminada: $deletedSongName", Toast.LENGTH_SHORT).show()
                 }
+            } else if (requestCode == 3) { // Editar canción
+                val editedSongName = data?.getStringExtra("editedSongName")
+                val editedSongLyrics = data?.getStringExtra("editedSongLyrics")
+                val eraseSongName = data?.getStringExtra("deletedSongName")
+                val eraseSongLyrics = data?.getStringExtra("deletedSongLyrics")
+                if (editedSongName != null && editedSongLyrics != null) {
+                    // Reemplaza la canción editada en la lista
+                    allSongs.remove(eraseSongLyrics)
+                    allSongs.add(editedSongLyrics)
+                    filteredSongs.remove(eraseSongName)
+                    filteredSongs.add(editedSongLyrics)
+                    songAdapter.notifyDataSetChanged()
+                    Toast.makeText(this, "Canción editada: $editedSongName", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
+
 
 
     private fun filterSongs(query: String) {
