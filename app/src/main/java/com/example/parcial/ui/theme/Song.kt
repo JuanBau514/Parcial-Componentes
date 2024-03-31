@@ -1,7 +1,10 @@
 package com.example.parcial.ui.theme
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextUtils
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,12 +26,11 @@ class Song : AppCompatActivity() {
         val songName = intent.getStringExtra("songName")
         val songLyrics = intent.getStringExtra("songLyrics")
 
-        // Obtener las referencias de los TextView
-        val mostrarNombre = findViewById<TextView>(R.id.txtTitleSong)
-        val mostrarLetra = findViewById<TextView>(R.id.txtInputEditSong)
+        Toast.makeText(this, "Nombre de la canción: $songName", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Letra de la canción: $songLyrics", Toast.LENGTH_SHORT).show()
 
-        // Establecer el texto en los TextView
-        mostrarNombre.text = songName
-        mostrarLetra.text = songLyrics
+        // Obtener las referencias de los TextView
+        binding.txtTitleSong.text = songName
+        binding.txtInputEditSong.setText(songLyrics)
     }
 }

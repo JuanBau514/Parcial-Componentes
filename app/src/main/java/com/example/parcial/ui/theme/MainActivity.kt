@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
             val songName = data?.getStringExtra("songName")
             val songLyrics = data?.getStringExtra("songLyrics")
             if (songName != null && songLyrics != null) {
-                allSongs.add(songName)
+                allSongs.add(songLyrics)
                 filteredSongs.add(songName)
                 songAdapter.notifyDataSetChanged()
             }
