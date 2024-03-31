@@ -42,14 +42,26 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
+        android:id="@+id/btnBorrar"
+        android:layout_width="133dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="452dp"
         android:text="@string/borrar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.233"
 
-        android:layout_marginTop="450dp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnEditar"
+        android:layout_width="133dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="452dp"
+        android:layout_marginLeft="200dp"
+        android:text="Editar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.233"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"  />
 </androidx.constraintlayout.widget.ConstraintLayout>

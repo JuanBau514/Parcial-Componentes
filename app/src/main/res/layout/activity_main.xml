@@ -34,11 +34,24 @@
         android:text="@string/practica_tambor"
         android:layout_marginTop="270dp"/>
 
-    <SearchView
+    <EditText
         android:id="@+id/txtSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="330dp"/>
+        android:hint="Buscar canción..."
+        android:layout_marginTop="340dp"
+        android:inputType="text"
+       />
+
+    <ListView
+        android:id="@+id/listViewSongs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtSearch"
+        android:divider="@android:color/black"
+        android:dividerHeight="1dp"
+        android:layout_marginTop="400dp"
+        />
 
     <TextView
         android:id="@+id/txtTittle"

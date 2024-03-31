@@ -2,6 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+<<<<<<< HEAD
       <entry key="MainActivity">
         <State>
           <targetSelectedWithDropDown>
@@ -27,6 +28,8 @@
       <entry key="Song">
         <State />
       </entry>
+=======
+>>>>>>> 020d7bcc5d89cb65545d330c4426b27b757512c5
       <entry key="app">
         <State />
       </entry>
