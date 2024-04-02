@@ -50,19 +50,15 @@ class MainActivity : AppCompatActivity() {
             // Pasar datos de la canción a la actividad SongActivity
             intent.putExtra("songName", selectedSong)
             intent.putExtra("songLyrics", songLyrics)
-<<<<<<< HEAD
 
             // Iniciar la actividad SongActivity
             startActivityForResult(intent, 2) // Cambiado de `startActivity` a `startActivityForResult`
         }
 
 
-
-=======
             startActivityForResult(intent, 2) // Usar startActivityForResult() en lugar de startActivity()
         }
 
->>>>>>> 4f2a6ce8a6047161c56b1fd6dc350ad02f28d2fb
         binding.btnSave.setOnClickListener{
             var intent = Intent(this, SaveSong::class.java)
             startActivityForResult(intent, 1)
@@ -98,13 +94,10 @@ class MainActivity : AppCompatActivity() {
                 val deletedSongName = data?.getStringExtra("deletedSongName")
                 val deletedSongLyrics = data?.getStringExtra("deletedSongLyrics")
                 if (!deletedSongName.isNullOrEmpty()) {
-<<<<<<< HEAD
                     // Elimina la canción de la lista
                     allSongs.remove(deletedSongLyrics)
                     filteredSongs.remove(deletedSongName)
                     songAdapter.notifyDataSetChanged()
-=======
->>>>>>> 4f2a6ce8a6047161c56b1fd6dc350ad02f28d2fb
                     Toast.makeText(this, "Canción eliminada: $deletedSongName", Toast.LENGTH_SHORT).show()
                     val index = songNames.indexOf(deletedSongName)
                     if (index != -1) { // Verificar si se encontró la canción
