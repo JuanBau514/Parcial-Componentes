@@ -3,8 +3,6 @@ package com.example.parcial.ui.theme
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ListView
@@ -19,8 +17,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editTextSearch: EditText
     private lateinit var listViewSongs: ListView
     private lateinit var songAdapter: ArrayAdapter<String>
-    private val songNames = mutableListOf<String>() // Lista para almacenar los nombres de las canciones
-    private val songLyrics = mutableListOf<String>() // Lista para almacenar las letras de las canciones
     private val allSongs = mutableListOf<String>()
     private val filteredSongs = mutableListOf<String>()
 
@@ -37,26 +33,29 @@ class MainActivity : AppCompatActivity() {
         editTextSearch = findViewById(R.id.txtSearch)
         listViewSongs = findViewById(R.id.listViewSongs)
 
+        //allSongs.addAll(listOf("Canción 1", "Canción 2", "Canción 3", "Canción 4"))
+        filteredSongs.addAll(allSongs)
+
         // Inicializar ListView
         songAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, filteredSongs)
         listViewSongs.adapter = songAdapter
 
-        editTextSearch.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                filterSongs(s.toString())
-            }
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
-
         listViewSongs.setOnItemClickListener { parent, view, position, id ->
-            val selectedSong = filteredSongs[position]
-            val songLyrics = songLyrics[songNames.indexOf(selectedSong)]
+            val selectedSong = parent.getItemAtPosition(position) as String
+            val songLyrics = allSongs[position]  // Obtén las letras de la canción según la posición en la lista
 
-            // Crear intent para abrir la actividad Song
+            // Crear intent para abrir la actividad SongActivity
             val intent = Intent(this, Song::class.java)
+
+            // Pasar datos de la canción a la actividad SongActivity
             intent.putExtra("songName", selectedSong)
             intent.putExtra("songLyrics", songLyrics)
+
+            // Iniciar la actividad SongActivity
+            startActivityForResult(intent, 2) // Cambiado de `startActivity` a `startActivityForResult`
+        }
+
+
             startActivityForResult(intent, 2) // Usar startActivityForResult() en lugar de startActivity()
         }
 
@@ -79,16 +78,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == 1) { // Agregar canción
                 val songName = data?.getStringExtra("songName")
-                val songLyric = data?.getStringExtra("songLyrics")
-                if (songName != null && songLyric != null) {
-                    songNames.add(songName)
-                    songLyrics.add(songLyric)
+                val songLyrics = data?.getStringExtra("songLyrics")
+                if (songName != null && songLyrics != null) {
+                    allSongs.add(songLyrics)
                     filteredSongs.add(songName)
                     songAdapter.notifyDataSetChanged()
                     Toast.makeText(this, "Canción agregada: $songName", Toast.LENGTH_SHORT).show()
@@ -97,6 +94,10 @@ class MainActivity : AppCompatActivity() {
                 val deletedSongName = data?.getStringExtra("deletedSongName")
                 val deletedSongLyrics = data?.getStringExtra("deletedSongLyrics")
                 if (!deletedSongName.isNullOrEmpty()) {
+                    // Elimina la canción de la lista
+                    allSongs.remove(deletedSongLyrics)
+                    filteredSongs.remove(deletedSongName)
+                    songAdapter.notifyDataSetChanged()
                     Toast.makeText(this, "Canción eliminada: $deletedSongName", Toast.LENGTH_SHORT).show()
                     val index = songNames.indexOf(deletedSongName)
                     if (index != -1) { // Verificar si se encontró la canción
@@ -118,22 +119,38 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "Canción editada: $editedSongName", Toast.LENGTH_SHORT).show()
                     }
                 }
+            } else if (requestCode == 3) { // Editar canción
+                val editedSongName = data?.getStringExtra("editedSongName")
+                val editedSongLyrics = data?.getStringExtra("editedSongLyrics")
+                val eraseSongName = data?.getStringExtra("deletedSongName")
+                val eraseSongLyrics = data?.getStringExtra("deletedSongLyrics")
+                if (editedSongName != null && editedSongLyrics != null) {
+                    // Reemplaza la canción editada en la lista
+                    allSongs.remove(eraseSongLyrics)
+                    allSongs.add(editedSongLyrics)
+                    filteredSongs.remove(eraseSongName)
+                    filteredSongs.add(editedSongLyrics)
+                    songAdapter.notifyDataSetChanged()
+                    Toast.makeText(this, "Canción editada: $editedSongName", Toast.LENGTH_SHORT).show()
+                }
             }
 
         }
     }
+
+
+
     private fun filterSongs(query: String) {
         filteredSongs.clear()
         if (query.isEmpty()) {
-            filteredSongs.addAll(songNames)
+            filteredSongs.addAll(allSongs)
         } else {
-            for (songName in songNames) {
-                if (songName.contains(query, ignoreCase = true)) {
-                    filteredSongs.add(songName)
+            for (song in allSongs) {
+                if (song.contains(query, ignoreCase = true)) {
+                    filteredSongs.add(song)
                 }
             }
         }
         songAdapter.notifyDataSetChanged()
     }
-
 }
