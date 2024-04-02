@@ -35,10 +35,7 @@ class Maraca : AppCompatActivity(), SensorEventListener {
         binding.btnCancelMaraca.setOnClickListener {
             sensorManager.unregisterListener(this)
             mediaPlayer.release()
-
-            var intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-
+            finish()
         }
     }
 

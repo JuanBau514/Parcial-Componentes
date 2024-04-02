@@ -31,8 +31,7 @@ class Tambor : AppCompatActivity() {
         }
 
         binding.btnCancelTambor.setOnClickListener {
-            var intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }
