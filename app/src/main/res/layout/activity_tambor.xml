@@ -15,11 +15,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text=""
         android:drawableTop="@drawable/tambor"
         android:backgroundTint="@color/white"
         android:layout_marginTop="100dp"/>
-        />
 
     <Button
         android:id="@+id/btnCancelTambor"

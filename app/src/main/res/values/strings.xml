@@ -59,4 +59,5 @@
     <string name="start">Comenzar</string>
     <string name="search">Buscar canción...</string>
     <string name="edit">Editar</string>
+    <string name="name_song">Nombre Canción</string>
 </resources>

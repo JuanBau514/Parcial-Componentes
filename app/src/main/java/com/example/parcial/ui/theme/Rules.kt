@@ -3,13 +3,9 @@ package com.example.parcial.ui.theme
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.parcial.R
 import com.example.parcial.databinding.ActivityRulesBinding
-import com.example.parcial.databinding.ActivitySongBinding
 import com.example.parcial.logic.Maraca
 import com.example.parcial.logic.Tambor
 
@@ -34,6 +30,7 @@ class Rules : AppCompatActivity() {
             binding.btnStartRules.setOnClickListener {
                 var intent = Intent(this, Maraca::class.java)
                 startActivity(intent)
+                finish()
             }
         }else{
             if(instrument=="Tambor"){
@@ -43,14 +40,14 @@ class Rules : AppCompatActivity() {
                 binding.btnStartRules.setOnClickListener {
                     var intent = Intent(this, Tambor::class.java)
                     startActivity(intent)
+                    finish()
                 }
             }
         }
 
 
         binding.btnCancelRules.setOnClickListener {
-            var intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
     }
