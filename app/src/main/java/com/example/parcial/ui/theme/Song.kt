@@ -34,16 +34,17 @@ class Song : AppCompatActivity() {
 
         // boton eliminar cancion
         binding.btnBorrar.setOnClickListener {
-            val songName = intent.getStringExtra("songName")
-            val songLyrics = intent.getStringExtra("songLyrics")
-            Toast.makeText(this, "Canción eliminada", Toast.LENGTH_SHORT).show()
+            binding.btnBorrar.setOnClickListener {
+                val songName = intent.getStringExtra("songName")
+                val songLyrics = intent.getStringExtra("songLyrics")
 
-            // Crear intent para enviar de vuelta el nombre de la canción eliminada
-            val intent = Intent()
-            intent.putExtra("deletedSongName", songName)
-            intent.putExtra("deletedSongLyrics", songLyrics)
-            setResult(Activity.RESULT_OK, intent)
-            finish()
+                // Crear intent para enviar de vuelta el nombre y la letra de la canción eliminada
+                val intent = Intent()
+                intent.putExtra("deletedSongName", songName)
+                intent.putExtra("deletedSongLyrics", songLyrics)
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
         }
 
         binding.btnEditar.setOnClickListener {

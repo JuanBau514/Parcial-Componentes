@@ -58,11 +58,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Song::class.java)
             intent.putExtra("songName", selectedSong)
             intent.putExtra("songLyrics", songLyrics)
-            startActivity(intent)
+            startActivityForResult(intent, 2) // Usar startActivityForResult() en lugar de startActivity()
         }
-
-
-
 
         binding.btnSave.setOnClickListener{
             var intent = Intent(this, SaveSong::class.java)
@@ -97,17 +94,33 @@ class MainActivity : AppCompatActivity() {
                     songAdapter.notifyDataSetChanged()
                     Toast.makeText(this, "Canción agregada: $songName", Toast.LENGTH_SHORT).show()
                 }
-            } else if (requestCode == 2) { // Eliminar canción
+            } else if (requestCode == 2) { // Eliminar canción desde Song
                 val deletedSongName = data?.getStringExtra("deletedSongName")
                 val deletedSongLyrics = data?.getStringExtra("deletedSongLyrics")
                 if (!deletedSongName.isNullOrEmpty()) {
-                    songNames.remove(deletedSongName)
-                    songLyrics.remove(deletedSongLyrics)
-                    filteredSongs.remove(deletedSongName)
-                    songAdapter.notifyDataSetChanged()
                     Toast.makeText(this, "Canción eliminada: $deletedSongName", Toast.LENGTH_SHORT).show()
+                    val index = songNames.indexOf(deletedSongName)
+                    if (index != -1) { // Verificar si se encontró la canción
+                        songNames.removeAt(index)
+                        songLyrics.removeAt(index)
+                        filteredSongs.remove(deletedSongName)
+                        songAdapter.notifyDataSetChanged()
+                        Toast.makeText(this, "Canción eliminada: $deletedSongName", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else if (requestCode == 3) { // Editar canción desde Song
+                val editedSongName = data?.getStringExtra("editedSongName")
+                val editedSongLyrics = data?.getStringExtra("editedSongLyrics")
+                if (!editedSongName.isNullOrEmpty() && !editedSongLyrics.isNullOrEmpty()) {
+                    val index = songNames.indexOf(editedSongName)
+                    if (index != -1) { // Verificar si se encontró la canción
+                        songLyrics[index] = editedSongLyrics
+                        songAdapter.notifyDataSetChanged()
+                        Toast.makeText(this, "Canción editada: $editedSongName", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
+
         }
     }
     private fun filterSongs(query: String) {
