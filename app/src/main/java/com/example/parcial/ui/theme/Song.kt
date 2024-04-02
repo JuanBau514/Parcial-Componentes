@@ -42,23 +42,15 @@ class Song : AppCompatActivity() {
         }
 
         binding.btnEditar.setOnClickListener {
-            val editSongName = intent.getStringExtra("edSongName")
-            val editSongLyrics = intent.getStringExtra("edSongLyrics")
-            val erraseSongName = intent.getStringExtra("SongName")
-            val erraseSongLyrics = intent.getStringExtra("songLyrics")
+            val songName = intent.getStringExtra("songName")
+            val songLyrics = intent.getStringExtra("songLyrics")
 
-            val newLyrics = binding.txtInputEditSong.text.toString()
-            if (TextUtils.isEmpty(newLyrics)) {
-                Toast.makeText(this, "No se puede dejar el campo vacío", Toast.LENGTH_SHORT).show()
-            } else {
-                // Crear un nuevo intent para abrir la actividad SaveSong y pasar los datos de la canción
-                val editIntent = Intent(this, SaveSong::class.java)
-                editIntent.putExtra("edSongName", editSongName)
-                editIntent.putExtra("edSongLyrics", editSongLyrics)
-                editIntent.putExtra("songName", erraseSongName)
-                editIntent.putExtra("songLyrics", erraseSongLyrics)
-                startActivityForResult(editIntent, 3)
-            }
+            // Crear intent para enviar de vuelta el nombre y la letra de la canción editada
+            val intent = Intent()
+            intent.putExtra("editedSongName", songName)
+            intent.putExtra("editedSongLyrics", binding.txtInputEditSong.text.toString())
+            setResult(Activity.RESULT_OK, intent)
+            finish()
         }
 
     }

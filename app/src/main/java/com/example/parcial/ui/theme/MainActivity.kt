@@ -21,10 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var songAdapter: ArrayAdapter<String>
     private val songNames = mutableListOf<String>() // Lista para almacenar los nombres de las canciones
     private val songLyrics = mutableListOf<String>() // Lista para almacenar las letras de las canciones
-    private val allSongs = mutableListOf<String>()
     private val filteredSongs = mutableListOf<String>()
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +76,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
@@ -107,19 +103,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "Canción eliminada: $deletedSongName", Toast.LENGTH_SHORT).show()
                     }
                 }
-            } else if (requestCode == 3) { // Editar canción desde Song
-                val editedSongName = data?.getStringExtra("editedSongName")
-                val editedSongLyrics = data?.getStringExtra("editedSongLyrics")
-                if (!editedSongName.isNullOrEmpty() && !editedSongLyrics.isNullOrEmpty()) {
-                    val index = songNames.indexOf(editedSongName)
-                    if (index != -1) { // Verificar si se encontró la canción
-                        songLyrics[index] = editedSongLyrics
-                        songAdapter.notifyDataSetChanged()
-                        Toast.makeText(this, "Canción editada: $editedSongName", Toast.LENGTH_SHORT).show()
-                    }
-                }
             }
-
         }
     }
     private fun filterSongs(query: String) {
