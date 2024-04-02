@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             // Pasar datos de la canción a la actividad SongActivity
             intent.putExtra("songName", selectedSong)
             intent.putExtra("songLyrics", songLyrics)
+<<<<<<< HEAD
 
             // Iniciar la actividad SongActivity
             startActivityForResult(intent, 2) // Cambiado de `startActivity` a `startActivityForResult`
@@ -57,6 +58,11 @@ class MainActivity : AppCompatActivity() {
 
 
 
+=======
+            startActivityForResult(intent, 2) // Usar startActivityForResult() en lugar de startActivity()
+        }
+
+>>>>>>> 4f2a6ce8a6047161c56b1fd6dc350ad02f28d2fb
         binding.btnSave.setOnClickListener{
             var intent = Intent(this, SaveSong::class.java)
             startActivityForResult(intent, 1)
@@ -88,15 +94,37 @@ class MainActivity : AppCompatActivity() {
                     songAdapter.notifyDataSetChanged()
                     Toast.makeText(this, "Canción agregada: $songName", Toast.LENGTH_SHORT).show()
                 }
-            } else if (requestCode == 2) { // Eliminar canción
+            } else if (requestCode == 2) { // Eliminar canción desde Song
                 val deletedSongName = data?.getStringExtra("deletedSongName")
                 val deletedSongLyrics = data?.getStringExtra("deletedSongLyrics")
                 if (!deletedSongName.isNullOrEmpty()) {
+<<<<<<< HEAD
                     // Elimina la canción de la lista
                     allSongs.remove(deletedSongLyrics)
                     filteredSongs.remove(deletedSongName)
                     songAdapter.notifyDataSetChanged()
+=======
+>>>>>>> 4f2a6ce8a6047161c56b1fd6dc350ad02f28d2fb
                     Toast.makeText(this, "Canción eliminada: $deletedSongName", Toast.LENGTH_SHORT).show()
+                    val index = songNames.indexOf(deletedSongName)
+                    if (index != -1) { // Verificar si se encontró la canción
+                        songNames.removeAt(index)
+                        songLyrics.removeAt(index)
+                        filteredSongs.remove(deletedSongName)
+                        songAdapter.notifyDataSetChanged()
+                        Toast.makeText(this, "Canción eliminada: $deletedSongName", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else if (requestCode == 3) { // Editar canción desde Song
+                val editedSongName = data?.getStringExtra("editedSongName")
+                val editedSongLyrics = data?.getStringExtra("editedSongLyrics")
+                if (!editedSongName.isNullOrEmpty() && !editedSongLyrics.isNullOrEmpty()) {
+                    val index = songNames.indexOf(editedSongName)
+                    if (index != -1) { // Verificar si se encontró la canción
+                        songLyrics[index] = editedSongLyrics
+                        songAdapter.notifyDataSetChanged()
+                        Toast.makeText(this, "Canción editada: $editedSongName", Toast.LENGTH_SHORT).show()
+                    }
                 }
             } else if (requestCode == 3) { // Editar canción
                 val editedSongName = data?.getStringExtra("editedSongName")
@@ -113,6 +141,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, "Canción editada: $editedSongName", Toast.LENGTH_SHORT).show()
                 }
             }
+
         }
     }
 

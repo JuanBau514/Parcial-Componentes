@@ -33,7 +33,8 @@ class SaveSong : AppCompatActivity() {
         }
 
         binding.btnReturn.setOnClickListener {
-            finish()
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }

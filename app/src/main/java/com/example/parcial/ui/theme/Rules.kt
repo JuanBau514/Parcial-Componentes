@@ -34,7 +34,6 @@ class Rules : AppCompatActivity() {
             binding.btnStartRules.setOnClickListener {
                 var intent = Intent(this, Maraca::class.java)
                 startActivity(intent)
-                finish()
             }
         }else{
             if(instrument=="Tambor"){
@@ -44,14 +43,14 @@ class Rules : AppCompatActivity() {
                 binding.btnStartRules.setOnClickListener {
                     var intent = Intent(this, Tambor::class.java)
                     startActivity(intent)
-                    finish()
                 }
             }
         }
 
 
         binding.btnCancelRules.setOnClickListener {
-            finish()
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
     }
