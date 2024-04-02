@@ -3,15 +3,9 @@ package com.example.parcial.ui.theme
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
-import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.parcial.R
 import com.example.parcial.databinding.ActivitySongBinding
 
 class Song : AppCompatActivity() {
