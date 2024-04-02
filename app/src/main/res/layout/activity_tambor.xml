@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".logic.Tambor">
+    tools:context=".logic.Tambor"
+    android:background="@color/Pastel_yellow">
 
     <Button
         android:id="@+id/btnPlayTambor"
@@ -28,5 +29,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="625dp"/>
+        android:layout_marginTop="625dp"
+        android:backgroundTint="@color/Blue_violet"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

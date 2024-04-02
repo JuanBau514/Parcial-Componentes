@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.theme.Rules">
+    tools:context=".ui.theme.Rules"
+    android:background="@color/Pastel_yellow">
 
     <TextView
         android:id="@+id/txtTittleRules"
@@ -17,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50dp"
         android:textSize="12pt"
-        android:textStyle="italic|bold"/>
+        android:textStyle="italic|bold"
+        android:textColor="@color/Blue_violet"/>
 
     <TextView
         android:id="@+id/txtBodyRules"
@@ -28,7 +30,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="10pt"
         android:layout_marginTop="150dp"
-        />
+        android:textColor="@color/Blue_violet"
+        android:background="@drawable/style_border_text_view"/>
 
     <Button
         android:id="@+id/btnStartRules"
@@ -38,8 +41,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-        android:layout_marginTop="500dp"/>
+        android:layout_marginTop="500dp"
+        android:backgroundTint="@color/Blue_violet"/>
 
     <Button
         android:id="@+id/btnCancelRules"
@@ -49,5 +52,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="575dp"/>
+        android:layout_marginTop="575dp"
+        android:backgroundTint="@color/Blue_violet"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.theme.MainActivity">
+    tools:context=".ui.theme.MainActivity"
+    android:background="@color/Pastel_yellow">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -18,29 +19,33 @@
         android:layout_height="wrap_content"
         android:text="@string/guardar_cancion"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="150dp"/>
+        android:layout_marginTop="150dp"
+        android:backgroundTint="@color/Blue_violet"/>
 
     <Button
         android:id="@+id/btnMaraca"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/practica_maraca"
-        android:layout_marginTop="210dp"/>
+        android:layout_marginTop="210dp"
+        android:backgroundTint="@color/Blue_violet"/>
 
     <Button
         android:id="@+id/btnTambor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/practica_tambor"
-        android:layout_marginTop="270dp"/>
+        android:layout_marginTop="270dp"
+        android:backgroundTint="@color/Blue_violet"/>
 
     <EditText
         android:id="@+id/txtSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Buscar canción..."
+        android:hint="@string/search"
         android:layout_marginTop="340dp"
         android:inputType="text"
+        android:backgroundTint="@color/Blue_violet"
        />
 
     <ListView
@@ -48,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtSearch"
-        android:divider="@android:color/black"
+        android:divider="@color/Blue_violet"
         android:dividerHeight="1dp"
         android:layout_marginTop="400dp"
         />
@@ -61,7 +66,8 @@
         android:layout_marginTop="75dp"
         android:textSize="14pt"
         android:textAlignment="center"
-        android:textStyle="bold|italic"/>
+        android:textStyle="bold|italic"
+        android:textColor="@color/Blue_violet"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
