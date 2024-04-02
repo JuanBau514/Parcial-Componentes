@@ -33,8 +33,12 @@ class Maraca : AppCompatActivity(), SensorEventListener {
         mediaPlayer.isLooping = true
 
         binding.btnCancelMaraca.setOnClickListener {
+            sensorManager.unregisterListener(this)
+            mediaPlayer.release()
+
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+
         }
     }
 
@@ -55,8 +59,7 @@ class Maraca : AppCompatActivity(), SensorEventListener {
 
                 val acceleration =
                     Math.sqrt((accelerationX * accelerationX + accelerationY * accelerationY + accelerationz * accelerationz).toDouble())
-                Toast.makeText(this, "Valor: $acceleration", Toast.LENGTH_SHORT).show()
-                val maxAcceleration = 10.5
+                val maxAcceleration = 10.0
 
                 if (acceleration > maxAcceleration) {
                     mediaPlayer.start()
