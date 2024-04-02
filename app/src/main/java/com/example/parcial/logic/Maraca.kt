@@ -1,17 +1,14 @@
 package com.example.parcial.logic
 
-import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parcial.R
 import com.example.parcial.databinding.ActivityMaracaBinding
-import com.example.parcial.ui.theme.MainActivity
 
 class Maraca : AppCompatActivity(), SensorEventListener {
     private lateinit var binding: ActivityMaracaBinding
