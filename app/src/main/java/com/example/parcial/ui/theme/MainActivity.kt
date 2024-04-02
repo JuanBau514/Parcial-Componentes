@@ -51,18 +51,27 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("songName", selectedSong)
             intent.putExtra("songLyrics", songLyrics)
 <<<<<<< HEAD
+<<<<<<< HEAD
             startActivityForResult(intent, 2) // Usar startActivityForResult() en lugar de startActivity()
         }
 
 =======
+=======
+>>>>>>> 5cd5611 (Eliminacion datos random)
 
             // Iniciar la actividad SongActivity
             startActivityForResult(intent, 2) // Cambiado de `startActivity` a `startActivityForResult`
         }
 
 
+<<<<<<< HEAD
 
 >>>>>>> de3dcfe (Eliminacion de comandos sin función y bibliotecas sin utilizar)
+=======
+            startActivityForResult(intent, 2) // Usar startActivityForResult() en lugar de startActivity()
+        }
+
+>>>>>>> 5cd5611 (Eliminacion datos random)
         binding.btnSave.setOnClickListener{
             var intent = Intent(this, SaveSong::class.java)
             startActivityForResult(intent, 1)
@@ -99,12 +108,18 @@ class MainActivity : AppCompatActivity() {
                 val deletedSongLyrics = data?.getStringExtra("deletedSongLyrics")
                 if (!deletedSongName.isNullOrEmpty()) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 5cd5611 (Eliminacion datos random)
                     // Elimina la canción de la lista
                     allSongs.remove(deletedSongLyrics)
                     filteredSongs.remove(deletedSongName)
                     songAdapter.notifyDataSetChanged()
+<<<<<<< HEAD
 >>>>>>> de3dcfe (Eliminacion de comandos sin función y bibliotecas sin utilizar)
+=======
+>>>>>>> 5cd5611 (Eliminacion datos random)
                     Toast.makeText(this, "Canción eliminada: $deletedSongName", Toast.LENGTH_SHORT).show()
                     val index = songNames.indexOf(deletedSongName)
                     if (index != -1) { // Verificar si se encontró la canción
